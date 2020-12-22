@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "575008429058",
+    "firebase_url": "https://noglutenapp-da230.firebaseio.com",
+    "project_id": "noglutenapp-da230",
+    "storage_bucket": "noglutenapp-da230.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575008429058:android:4c3e2cf7b0bfe4a0d5831b",
+        "android_client_info": {
+          "package_name": "com.example.nogluttenapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575008429058-7mb53ht9hp1e1d3behfm2a8cmgupaae4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nogluttenapp",
+            "certificate_hash": "b8805ce7ce76d8c44037a54d516ba4c1be44463d"
+          }
+        },
+        {
+          "client_id": "575008429058-fbfnn7d2bre5mh49qr3519tcuonpshcv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp6mXiPb2Ss2pbISzRHjVCiKdUYplDH9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575008429058-fbfnn7d2bre5mh49qr3519tcuonpshcv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "575008429058-0theo470u69moqmtnmsl2e6fbs75cqc2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.noglutenapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
