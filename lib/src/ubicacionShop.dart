@@ -1,10 +1,10 @@
-/*
+
 import 'dart:async';
 import 'package:address_search_field/address_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:noglutenapp/src/provider/shopsProvider.dart';
+import 'package:nogluttenapp/src/provider/shopsProvider.dart';
 import 'package:provider/provider.dart';
 import 'constantes/constantes.dart';
 
@@ -200,9 +200,9 @@ print(provider.ciudadSelecionada);
           //capturar el punto seleccionado por el usuario y guardarlo en el provider
 
 
-          */
-/*_locatePosition();
-          _determinePosition();*//*
+
+_locatePosition();
+          _determinePosition();
 
         });
   }
@@ -234,4 +234,4 @@ print(provider.ciudadSelecionada);
     return await Geolocator.getCurrentPosition();
   }
 }
-*/
+

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:nogluttenapp/src/ubicacionShop.dart';
 
 import 'package:provider/provider.dart';
 
@@ -39,7 +40,7 @@ class _MyAppState extends State<MyApp> {
               'paginicial' : (context) => MyApp(),
               '$addshop' : (context) => addShops(),
               '$routeEjemplos' : (context) => HomePage(),
-             // '$ubicacionshop' : (context) => ubicacionShop()
+              '$ubicacionshop' : (context) => ubicacionShop()
             },
           )
     );
