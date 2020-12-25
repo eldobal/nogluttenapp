@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nogluttenapp/src/constantes/ColorPalete.dart';
 import 'package:nogluttenapp/src/provider/shopsProvider.dart';
+import 'package:nogluttenapp/src/widgets/alertDialogHorarios.dart';
 import 'package:nogluttenapp/src/widgets/dropdawnField.dart';
 import 'package:provider/provider.dart';
 import 'constantes/constantes.dart';
@@ -28,12 +29,16 @@ class _addShopsState extends State<addShops> {
   }
 
   Widget _addShopData() {
-    return Column(
-      children: [
-        _seleccionarCiudad(),
-        _agregarNombreTienda(),
-        _agregarUbicacion()
-      ],
+    return Container(
+      color: ColorPalete.color4,
+      child: Column(
+        children: [
+          _seleccionarCiudad(),
+          _agregarNombreTienda(),
+          _agregarUbicacion(),
+          _agregarHorarioTienda(),
+        ],
+      ),
     );
   }
 
@@ -45,7 +50,7 @@ class _addShopsState extends State<addShops> {
             children: [
               Consumer<ShopsProvider>(
                   builder: (context, provider, child) =>
-                      Text('seleccione el lugar donde reside la tienda')),
+                      Text('Seleccione la ciudad donde reside la tienda')),
               Padding(
                 padding: const EdgeInsets.only(left: 32, right: 32),
                 child: dropdawnWidget(),
@@ -57,6 +62,7 @@ class _addShopsState extends State<addShops> {
 
   Widget _agregarNombreTienda() {
     return Card(
+      color: ColorPalete.color4,
       child: Column(
         children: <Widget>[
           Text('Ingrese el nombre de la tienda ',
@@ -105,11 +111,45 @@ class _addShopsState extends State<addShops> {
                         }),
                     provider.longitud == 0 && provider.latitud == 0
                         ? Text('')
-                        : Center(child: Text(' Ha selecionado la ubicacion',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: ColorPalete.color5),))
+                        : Center(
+                            child: Text(
+                            ' Ha selecionado la ubicacion',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: ColorPalete.color5),
+                          ))
                   ],
                 ),
     );
   }
+
+  Widget _agregarHorarioTienda() {
+    return Column(
+      children: [
+        Text('Seleccione los horarios establecidos de la tienda'),
+        RaisedButton(
+          child: Text('Seleccionar Horarios'),
+          onPressed: (){
+              _alertDialogAddHorario();
+          },
+        ),
+      ],
+    );
+  }
+
+   //alertdialog de confimacion de la ubicacion
+  Future<void> _alertDialogAddHorario() async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      barrierColor: Colors.black12,
+      builder: (BuildContext context) {
+        return AlertDialogHorarios();
+      },
+    );
+  }
+
 
   Widget _fabAddDataFirestore() {
     Firebase.initializeApp();
