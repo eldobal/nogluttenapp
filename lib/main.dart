@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:nogluttenapp/src/horariosShop.dart';
 import 'package:nogluttenapp/src/ubicacionShop.dart';
 
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class _MyAppState extends State<MyApp> {
   final addshop = Constantes().addShops;
   final routeEjemplos = Constantes().ejemplos;
   final ubicacionshop = Constantes().addubicacionShop;
+  final horariosshop = Constantes().addHorarios;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,8 @@ class _MyAppState extends State<MyApp> {
               'paginicial' : (context) => MyApp(),
               '$addshop' : (context) => addShops(),
               '$routeEjemplos' : (context) => HomePage(),
-              '$ubicacionshop' : (context) => ubicacionShop()
+              '$ubicacionshop' : (context) => ubicacionShop(),
+              '$horariosshop' : (context) => HorariosShop()
             },
           )
     );
@@ -129,6 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+/*
   Widget _floatingActionButton2(){
     //se ocupa el consumer para obtener los datos del provider
     return Consumer<ShopsProvider>(
@@ -162,6 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     );
   }
+*/
 
   void _addShops() {
     Navigator.pushNamed(context, Constantes().addShops.toString());

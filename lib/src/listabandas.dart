@@ -40,7 +40,7 @@ class ListaBandas extends StatelessWidget {
                         ),
                       ),
                       Consumer<ShopsProvider>(
-                        builder: (context,provider, child) => Text('${provider.numero}')
+                        builder: (context,provider, child) => Text('')
                       ),
 
                     ],

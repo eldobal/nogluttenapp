@@ -29,7 +29,7 @@ dependencies:
   geolocator: ^6.1.13
   address_search_field: ^3.0.8
   lottie: ^0.7.0+1
-
+  flutter_time_picker_spinner: ^1.0.6+1
   flutter:
     sdk: flutter
 

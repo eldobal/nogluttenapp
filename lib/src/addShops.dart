@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:nogluttenapp/src/constantes/ColorPalete.dart';
 import 'package:nogluttenapp/src/provider/shopsProvider.dart';
 import 'package:nogluttenapp/src/widgets/alertDialogHorarios.dart';
@@ -30,7 +31,6 @@ class _addShopsState extends State<addShops> {
 
   Widget _addShopData() {
     return Container(
-      color: ColorPalete.color4,
       child: Column(
         children: [
           _seleccionarCiudad(),
@@ -128,28 +128,19 @@ class _addShopsState extends State<addShops> {
     return Column(
       children: [
         Text('Seleccione los horarios establecidos de la tienda'),
-        RaisedButton(
-          child: Text('Seleccionar Horarios'),
-          onPressed: (){
-              _alertDialogAddHorario();
-          },
+        Consumer<ShopsProvider>(
+          builder: (context,provider,child)=>RaisedButton(
+            child: Text('Seleccionar Horarios'),
+            onPressed: (){
+              final horarios = Constantes().addHorarios;
+              provider.setTimeClear();
+              Navigator.pushNamed(context, horarios.toString());
+            },
+          ),
         ),
       ],
     );
   }
-
-   //alertdialog de confimacion de la ubicacion
-  Future<void> _alertDialogAddHorario() async {
-    return showDialog(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      barrierColor: Colors.black12,
-      builder: (BuildContext context) {
-        return AlertDialogHorarios();
-      },
-    );
-  }
-
 
   Widget _fabAddDataFirestore() {
     Firebase.initializeApp();
