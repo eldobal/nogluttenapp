@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:nogluttenapp/src/constantes/ColorPalete.dart';
 import 'package:nogluttenapp/src/provider/shopsProvider.dart';
 import 'package:nogluttenapp/src/widgets/alertDialogHorarios.dart';
@@ -34,8 +33,17 @@ class _addShopsState extends State<addShops> {
       child: Column(
         children: [
           _seleccionarCiudad(),
+          Divider(
+            color: ColorPalete.color5,
+          ),
           _agregarNombreTienda(),
+          Divider(
+            color: ColorPalete.color5,
+          ),
           _agregarUbicacion(),
+          Divider(
+            color: ColorPalete.color5,
+          ),
           _agregarHorarioTienda(),
         ],
       ),
@@ -129,14 +137,31 @@ class _addShopsState extends State<addShops> {
       children: [
         Text('Seleccione los horarios establecidos de la tienda'),
         Consumer<ShopsProvider>(
-          builder: (context,provider,child)=>RaisedButton(
+          builder: (context, provider, child) => RaisedButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            ),
             child: Text('Seleccionar Horarios'),
-            onPressed: (){
+            onPressed: () {
+              provider.clearTimers();
               final horarios = Constantes().addHorarios;
-              provider.setTimeClear();
               Navigator.pushNamed(context, horarios.toString());
             },
           ),
+        ),
+        Center(
+          child: Consumer<ShopsProvider>(
+              builder: (context, provider, child) =>
+                  provider.horarioDesdeM.hour != 0 &&
+                          provider.horarioDesdeM.minute != 0 &&
+                          provider.horarioHastaM.hour != 0 &&
+                          provider.horarioHastaM.minute != 0 &&
+                          provider.horarioDesdeT.hour != 0 &&
+                          provider.horarioDesdeT.minute != 0 &&
+                          provider.horarioHastaT.hour != 0 &&
+                          provider.horarioHastaT.minute != 0 ? textCustomStyle(
+                          'Se han seleccionado los horarios correctamente')
+                      : Text('')),
         ),
       ],
     );
@@ -161,6 +186,21 @@ class _addShopsState extends State<addShops> {
             collectionReference.add(dataaddfirebase);
           */
           }),
+    );
+  }
+
+  Widget textCustomStyle(String texto) {
+    return Column(
+      children: [
+        Text(
+          "${texto}",
+          style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic,
+              color: ColorPalete.color2),
+        ),
+      ],
     );
   }
 }

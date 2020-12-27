@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+
 import 'package:nogluttenapp/src/constantes/ColorPalete.dart';
 import 'package:nogluttenapp/src/provider/shopsProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:lottie/lottie.dart' as lottie;
+import 'package:simple_time_range_picker/simple_time_range_picker.dart';
 
 class AlertDialogHorarios extends StatefulWidget {
   AlertDialogHorarios();
@@ -31,7 +32,8 @@ class _AlertDialogHorariosState extends State<AlertDialogHorarios> {
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              hourMinute15Interval(),/*
+             // hourMinute15Interval(),
+              /*
               Consumer<ShopsProvider>(
                   builder:(context,provider,child)=>
                   Text('horario seleccionado: ${provider.horaHastaLVT}'))*/
@@ -76,36 +78,20 @@ class _AlertDialogHorariosState extends State<AlertDialogHorarios> {
     /*  Navigator.of(context).pop();
   */
   }
-  Widget hourMinute15Interval() {
-    return Consumer<ShopsProvider>(
-      builder: (context, provider, child) => new TimePickerSpinner(
-        time: DateTime.now(),
-        spacing: 80,
-        isForce2Digits: true,
-        minutesInterval: 15,
-        onTimeChange: (time) {
+
+
+  Widget selectorHoras(){
+   return RaisedButton(
+      child: Text("OpenPicker"),
+      onPressed: () => TimeRangePicker.show(
+        context: context,
+        onSubmitted: (TimeRangeValue value) {
           setState(() {
-            switch(provider.timepickerSeleccionado) {
-              case 'desdem': {
-                provider.setHoraDesdeLVM(time.hour, time.minute);
-              }
-              break;
-              case 'hastam': {
-                provider.setHoraHastaLVM(time.hour, time.minute);
-              }
-              break;
-              case 'desdet': {
-                provider.setHoraDesdeLVT(time.hour, time.minute);
-              }
-              break;
-              case 'hastat': {
-                provider.setHoraHastaLVT(time.hour, time.minute);
-              }
-              break;
-            }
+           print(' ${value.startTime} y ${value.endTime} ');
           });
         },
       ),
     );
+
   }
 }
