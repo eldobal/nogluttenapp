@@ -1,8 +1,12 @@
+import 'dart:core';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:nogluttenapp/src/constantes/ColorPalete.dart';
 import 'package:nogluttenapp/src/provider/shopsProvider.dart';
-import 'package:nogluttenapp/src/widgets/alertDialogHorarios.dart';
 import 'package:nogluttenapp/src/widgets/dropdawnField.dart';
 import 'package:provider/provider.dart';
 import 'constantes/constantes.dart';
@@ -13,6 +17,7 @@ class addShops extends StatefulWidget {
 }
 
 class _addShopsState extends State<addShops> {
+  final CarouselController _controller = CarouselController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +34,7 @@ class _addShopsState extends State<addShops> {
   }
 
   Widget _addShopData() {
-    return Container(
+    return SingleChildScrollView(
       child: Column(
         children: [
           _seleccionarCiudad(),
@@ -45,6 +50,15 @@ class _addShopsState extends State<addShops> {
             color: ColorPalete.color5,
           ),
           _agregarHorarioTienda(),
+          Divider(
+            color: ColorPalete.color5,
+          ),
+          _agregarImage(),
+          Divider(
+            color: ColorPalete.color5,
+          ),
+          _agregarProductos(),
+         // viewImage()
         ],
       ),
     );
@@ -159,12 +173,56 @@ class _addShopsState extends State<addShops> {
                           provider.horarioDesdeT.hour != 0 &&
                           provider.horarioDesdeT.minute != 0 &&
                           provider.horarioHastaT.hour != 0 &&
-                          provider.horarioHastaT.minute != 0 ? textCustomStyle(
+                          provider.horarioHastaT.minute != 0
+                      ? textCustomStyle(
                           'Se han seleccionado los horarios correctamente')
                       : Text('')),
         ),
       ],
     );
+  }
+
+  final imgprueba = Constantes().imagenprueba;
+  List<int> list = [1,2,3,4,5];
+  //widget para seleccionar 3 fotos del dispositivo y visualizarlas
+  Widget _agregarImage() {
+    return Consumer<ShopsProvider>(
+      builder: (context, provider, child) => Column(
+        children: <Widget>[
+          RaisedButton(
+            child: Text("Pick images"),
+            onPressed: (){
+              final constantes = Constantes().addImages;
+              //metodo para obtener las 3 fotos del local
+              Navigator.pushNamed(context, constantes);
+            },
+          ),Padding(
+            padding: const EdgeInsets.all(8.0),
+            child:CarouselSlider(
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    aspectRatio: 1.5,
+                    enlargeCenterPage: true,
+                  ),
+                  carouselController: _controller,
+                  items: provider.images.map((item) => Container(
+                    child: Center(
+                        child: AssetThumb(
+                          asset: item,
+                          width: 800,
+                          height: 800,
+                        )
+                    ),
+                  )).toList(),
+                )
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _agregarProductos(){
+    return RaisedButton(onPressed:(){});
   }
 
   Widget _fabAddDataFirestore() {
@@ -193,7 +251,7 @@ class _addShopsState extends State<addShops> {
     return Column(
       children: [
         Text(
-          "${texto}",
+          "$texto",
           style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,

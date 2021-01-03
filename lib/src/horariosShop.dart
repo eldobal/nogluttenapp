@@ -116,8 +116,7 @@ class _HorariosShopState extends State<HorariosShop> {
                     Expanded(
                       flex: 5,
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 32.0, right: 32.0, bottom: 16),
+                        padding: const EdgeInsets.only(left:32.0, right: 32,top: 20,bottom: 32),
                         child: Consumer<ShopsProvider>(
                           builder: (context, provider, child) => RaisedButton(
                               elevation: 10,

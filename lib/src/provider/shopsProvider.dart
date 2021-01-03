@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 
 class ShopsProvider extends ChangeNotifier {
   double latitud = 0;
@@ -16,6 +17,16 @@ class ShopsProvider extends ChangeNotifier {
   final nombreTienda = TextEditingController();
 
   String ciudadSelecionada = '';
+
+
+  List<Asset> images = List<Asset>();
+
+  void setImages(List<Asset> setimages){
+
+    images = setimages;
+    notifyListeners();
+  }
+
 
   void setCiudadSelecionada(String ciudad) {
     ciudadSelecionada = '${ciudad.toString()}';

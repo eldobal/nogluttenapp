@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:nogluttenapp/src/FirebaseApp.dart';
 import 'package:nogluttenapp/src/horariosShop.dart';
+import 'package:nogluttenapp/src/selectImage.dart';
 import 'package:nogluttenapp/src/ubicacionShop.dart';
 
 import 'package:provider/provider.dart';
@@ -24,6 +26,7 @@ class _MyAppState extends State<MyApp> {
   final routeEjemplos = Constantes().ejemplos;
   final ubicacionshop = Constantes().addubicacionShop;
   final horariosshop = Constantes().addHorarios;
+  final selectImage = Constantes().addImages;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,8 @@ class _MyAppState extends State<MyApp> {
               '$addshop' : (context) => addShops(),
               '$routeEjemplos' : (context) => HomePage(),
               '$ubicacionshop' : (context) => ubicacionShop(),
-              '$horariosshop' : (context) => HorariosShop()
+              '$horariosshop' : (context) => HorariosShop(),
+              '$selectImage' : (context) => SelectImage()
             },
           )
     );
@@ -81,8 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: //iniciofirebase(),
-      Center(
+      body: iniciofirebase(),
+    /*  Center(
         child: Container(
           child:
           GoogleMap(
@@ -94,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
             markers: Set.from(allMarkers),
           ),
         ),
-      ),
+      ),*/
       floatingActionButton: _floatingActionButton(), // This trailing
       floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,// comma makes auto-formatting nicer for build methods.
     );
