@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:nogluttenapp/src/FirebaseApp.dart';
-import 'package:nogluttenapp/src/horariosShop.dart';
-import 'package:nogluttenapp/src/selectImage.dart';
-import 'package:nogluttenapp/src/ubicacionShop.dart';
+import 'package:nogluttenapp/src/ejemplos/FirebaseApp.dart';
+import 'package:nogluttenapp/src/UI/horariosShop.dart';
+import 'package:nogluttenapp/src/ejemplos/selectImage.dart';
+import 'package:nogluttenapp/src/UI/ubicacionShop.dart';
 
 import 'package:provider/provider.dart';
 
-import 'src/addShops.dart';
+import 'src/UI/addShops.dart';
 import 'src/constantes/constantes.dart';
 import 'src/ejemplos/tabs/home_page.dart';
 import 'src/provider/shopsProvider.dart';
@@ -86,19 +86,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       body: iniciofirebase(),
-    /*  Center(
-        child: Container(
-          child:
-          GoogleMap(
-            mapType: MapType.normal,
-            initialCameraPosition: _kGooglePlex,
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-            markers: Set.from(allMarkers),
-          ),
-        ),
-      ),*/
       floatingActionButton: _floatingActionButton(), // This trailing
       floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,// comma makes auto-formatting nicer for build methods.
     );
@@ -136,41 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-/*
-  Widget _floatingActionButton2(){
-    //se ocupa el consumer para obtener los datos del provider
-    return Consumer<ShopsProvider>(
-      builder: (context,provider,child){
-        return  Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              FloatingActionButton(
-                onPressed: () {provider.increment();
-                print(provider.numero);
-                },
-                tooltip: 'Increment',
-                child: Icon(Icons.add),
-              ),
-              FloatingActionButton(
-                onPressed: () {provider.decrement();
-                print(provider.numero);
-                },
-                tooltip: 'Increment',
-                child: Icon(Icons.wash_sharp),
-              ),
-              FloatingActionButton(
-                onPressed: _goToHome,
-                tooltip: 'Increment',
-                child:Text('${provider.numero}'),
-              ),
-            ],
-          ),
-        );
-      }
-    );
-  }
-*/
 
   void _addShops() {
     Navigator.pushNamed(context, Constantes().addShops.toString());
@@ -194,10 +146,6 @@ class _MyHomePageState extends State<MyHomePage> {
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
-
-
-
-
 
 }
 

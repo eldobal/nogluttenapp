@@ -56,7 +56,7 @@ class _SelectImageState extends State<SelectImage> {
                       actionBarColor: "#abcdef",
                       actionBarTitle: "Example App",
                       allViewTitle: "All Photos",
-                      useDetailsView: false,
+                      useDetailsView: true,
                       selectCircleStrokeColor: "#000000",
                     ),
                   );

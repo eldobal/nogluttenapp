@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nogluttenapp/src/constantes/ColorPalete.dart';
 import 'package:nogluttenapp/src/provider/shopsProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,6 @@ class _MyStatefulWidgetState extends State<dropdawnWidget> {
   List<DropdownMenuItem<Ciudad>> _dropdownMenuItems;
   Ciudad _selectedCompany;
 
-
   @override
   void initState() {
     _dropdownMenuItems = buildDropdownMenuItems(_companies);
@@ -33,7 +33,7 @@ class _MyStatefulWidgetState extends State<dropdawnWidget> {
       items.add(
         DropdownMenuItem(
           value: ciudad,
-          child: Text(ciudad.name),
+          child: Center(child: textCustomStyle(ciudad.name)),
         ),
       );
     }
@@ -43,37 +43,56 @@ class _MyStatefulWidgetState extends State<dropdawnWidget> {
   onChangeDropdownItem(Ciudad selectedCompany) {
     setState(() {
       _selectedCompany = selectedCompany;
-      Provider.of<ShopsProvider>(context, listen: false).setCiudadSelecionada(_selectedCompany.name);
+      Provider.of<ShopsProvider>(context, listen: false)
+          .setCiudadSelecionada(_selectedCompany.name);
 
       //provider.setCiudadSelecionada(_selectedCompany.name);
-     //setiar el valor del dropdawn en el provider
+      //setiar el valor del dropdawn en el provider
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Consumer<ShopsProvider>(
-         builder: (context,provider, child) =>
-             DropdownButton(
-            value: _selectedCompany,
-            items: _dropdownMenuItems,
-            onChanged: onChangeDropdownItem
+    return Consumer<ShopsProvider>(
+      builder: (context, provider, child) => Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Center(
+            child: DropdownButton(
+                value: _selectedCompany,
+                items: _dropdownMenuItems,
+                onChanged: onChangeDropdownItem),
           ),
+          textCustomStyle('Has seleccionado: ${_selectedCompany.name}'),
+          SizedBox(
+            height: 5.0,
+          ),
+        ],
+      ),
+    );
+  }
 
-        ),
-        Text('Has seleccionado: ${_selectedCompany.name}'),
-        SizedBox(
-          height: 10.0,
+
+  Widget textCustomStyle(String texto) {
+    return Column(
+      children: [
+        Text(
+          "$texto",
+          style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic,
+              color: ColorPalete.color5),
+          textAlign: TextAlign.center,
         ),
       ],
     );
   }
 
 }
+
+
 
 class Ciudad {
   int id;

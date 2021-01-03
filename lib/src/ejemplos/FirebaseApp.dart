@@ -6,7 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nogluttenapp/main.dart';
-import 'package:nogluttenapp/src/listabandas.dart';
+import 'package:nogluttenapp/src/ejemplos/listabandas.dart';
 
 
 void main() {

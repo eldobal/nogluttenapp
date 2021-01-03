@@ -5,9 +5,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nogluttenapp/src/constantes/ColorPalete.dart';
 import 'package:nogluttenapp/src/provider/shopsProvider.dart';
-import 'package:nogluttenapp/src/widgets/alertDialogUbication.dart';
+import 'package:nogluttenapp/src/widgets/addShopsWidgets/alertDialogUbication.dart';
 import 'package:provider/provider.dart';
-import 'constantes/constantes.dart';
+import '../constantes/constantes.dart';
 
 class ubicacionShop extends StatefulWidget {
   @override

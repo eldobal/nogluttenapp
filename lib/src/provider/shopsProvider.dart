@@ -22,11 +22,14 @@ class ShopsProvider extends ChangeNotifier {
   List<Asset> images = List<Asset>();
 
   void setImages(List<Asset> setimages){
-
     images = setimages;
     notifyListeners();
   }
 
+  void setImagesClear(){
+    images.clear();
+    notifyListeners();
+  }
 
   void setCiudadSelecionada(String ciudad) {
     ciudadSelecionada = '${ciudad.toString()}';
