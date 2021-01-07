@@ -42,7 +42,6 @@ class ListaBandas extends StatelessWidget {
                       Consumer<ShopsProvider>(
                         builder: (context,provider, child) => Text('')
                       ),
-
                     ],
                   ),
                 );

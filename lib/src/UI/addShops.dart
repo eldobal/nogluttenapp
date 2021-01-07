@@ -2,9 +2,9 @@ import 'dart:core';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:nogluttenapp/src/constantes/ColorPalete.dart';
 import 'package:nogluttenapp/src/provider/shopsProvider.dart';
+import 'package:nogluttenapp/src/widgets/addShopsWidgets/addProductWidget.dart';
 import 'package:nogluttenapp/src/widgets/addShopsWidgets/buttomSelectImages.dart';
 import 'package:nogluttenapp/src/widgets/addShopsWidgets/carrouselImagesShop.dart';
 import 'package:nogluttenapp/src/widgets/addShopsWidgets/dropdawnField.dart';
@@ -23,15 +23,30 @@ class _addShopsState extends State<addShops> {
     return Scaffold(
       appBar: _appbarAddShops(),
       body: _addShopData(),
+      floatingActionButton: _floatingActionButtom(),
     );
   }
 
   Widget _appbarAddShops() {
     return AppBar(
+      backgroundColor: ColorPalete.color1,
         title: Consumer<ShopsProvider>(
-            builder: (context, provider, child) =>
-                Text('Agregar tienda')));
+            builder: (context, provider, child) => Text('Agregar tienda')
+        ));
   }
+
+  Widget _floatingActionButtom(){
+    return FloatingActionButton(
+      backgroundColor: ColorPalete.color5,
+        child: Icon(Icons.add),
+        onPressed: (){
+          //metodo para agregar el producto en Firebase
+
+
+
+        });
+  }
+
 
   Widget _addShopData() {
     return SingleChildScrollView(
@@ -58,6 +73,10 @@ class _addShopsState extends State<addShops> {
             color: ColorPalete.color5,
           ),
           _agregarProductos(),
+          Divider(
+            height: 100,
+            color: ColorPalete.color5,
+          ),
           // viewImage()
         ],
       ),
@@ -100,8 +119,6 @@ class _addShopsState extends State<addShops> {
             SizedBox(
               height: 20,
             ),
-
-                
           ],
         ),
       ),
@@ -124,6 +141,7 @@ class _addShopsState extends State<addShops> {
                     Text(
                         'Agregar ubicacion de la tienda ${provider.ciudadSelecionada}'),
                     RaisedButton(
+                      color: ColorPalete.color4,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
                         ),
@@ -150,6 +168,7 @@ class _addShopsState extends State<addShops> {
         Text('Seleccione los horarios establecidos de la tienda'),
         Consumer<ShopsProvider>(
           builder: (context, provider, child) => RaisedButton(
+            color: ColorPalete.color4,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(18.0),
             ),
@@ -191,7 +210,7 @@ class _addShopsState extends State<addShops> {
   }
 
   Widget _agregarProductos() {
-    return RaisedButton(onPressed: () {});
+    return addProductWidget();
   }
 
   Widget _fabAddDataFirestore() {

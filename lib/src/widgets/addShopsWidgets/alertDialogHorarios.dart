@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:nogluttenapp/src/constantes/ColorPalete.dart';
 import 'package:nogluttenapp/src/provider/shopsProvider.dart';
 import 'package:provider/provider.dart';

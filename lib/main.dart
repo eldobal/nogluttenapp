@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:nogluttenapp/src/constantes/ColorPalete.dart';
 import 'package:nogluttenapp/src/ejemplos/FirebaseApp.dart';
 import 'package:nogluttenapp/src/UI/horariosShop.dart';
 import 'package:nogluttenapp/src/ejemplos/selectImage.dart';
@@ -83,14 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
   
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: iniciofirebase(),
       floatingActionButton: _floatingActionButton(), // This trailing
-      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,// comma makes auto-formatting nicer for build methods.
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,// comma makes auto-formatting nicer for build methods.
     );
-
-
   }
 
   Widget _floatingActionButton(){
@@ -99,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Row(
         children: [
           FloatingActionButton(
+            backgroundColor: ColorPalete.color5,
             onPressed: _addShops,
             tooltip: 'Increment',
             child: Icon(Icons.home),

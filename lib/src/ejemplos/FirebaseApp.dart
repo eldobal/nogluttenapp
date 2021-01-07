@@ -60,6 +60,7 @@ class iniciofirebase extends StatelessWidget {
               child:
               GoogleMap(
                 myLocationButtonEnabled: true,
+
                 tiltGesturesEnabled: true,
                 myLocationEnabled: true,
                 zoomGesturesEnabled: true,

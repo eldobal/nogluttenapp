@@ -33,7 +33,7 @@ class _MyStatefulWidgetState extends State<dropdawnWidget> {
       items.add(
         DropdownMenuItem(
           value: ciudad,
-          child: Center(child: textCustomStyle(ciudad.name)),
+          child: Center(child: Text(ciudad.name)),
         ),
       );
     }
@@ -89,10 +89,7 @@ class _MyStatefulWidgetState extends State<dropdawnWidget> {
       ],
     );
   }
-
 }
-
-
 
 class Ciudad {
   int id;
