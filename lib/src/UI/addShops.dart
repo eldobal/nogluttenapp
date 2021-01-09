@@ -36,13 +36,12 @@ class _addShopsState extends State<addShops> {
   }
 
   Widget _floatingActionButtom(){
-    return FloatingActionButton(
+    return FloatingActionButton.extended(
       backgroundColor: ColorPalete.color5,
-        child: Icon(Icons.add),
+        icon: Icon(Icons.save),
+        label: Text('Agregar'),
         onPressed: (){
           //metodo para agregar el producto en Firebase
-
-
 
         });
   }

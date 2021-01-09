@@ -20,7 +20,7 @@ class _AlertDialogAddProductState extends State<AlertDialogAddProduct> {
   Widget build(BuildContext context) {
     return Consumer<ShopsProvider>(
       builder: (context, provider, child) => AlertDialog(
-        elevation: 30,
+        elevation: 3,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20))),
         title: Center(
@@ -75,7 +75,6 @@ class _AlertDialogAddProductState extends State<AlertDialogAddProduct> {
         child: Text('Agregar Imagen del producto'),
         onPressed: () async {
           //metodo para agregar Una fotografia del producto
-
           provider.setImageProductClear();
           List<Asset> resultList = List<Asset>();
           //  String error = 'No Error Dectected';
@@ -93,11 +92,8 @@ class _AlertDialogAddProductState extends State<AlertDialogAddProduct> {
                 selectCircleStrokeColor: "#000000",
               ),
             );
-          } on Exception catch (e) {
-            //error = e.toString();
-          }
+          } on Exception catch (e) {}
           if (!mounted) return;
-
           setState(() {
             provider.setImageProduct(resultList);
             print(provider.imageProductProvider.length);
@@ -153,6 +149,7 @@ class _AlertDialogAddProductState extends State<AlertDialogAddProduct> {
             child: Text('Descripcion del Producto'),
           ),
           TextFormField(
+            maxLines: 4,
             validator: (value) {
               if (value.isEmpty) {
                 return 'Ingrese la descripcion del producto';
@@ -197,8 +194,7 @@ class _AlertDialogAddProductState extends State<AlertDialogAddProduct> {
 
                   provider.setProducts(producto);
 
-                  print(
-                      '${producto.nameProduct}, ${producto.descriptionProduct} , ${provider.imageProductProvider.last.identifier}');
+                  print('${producto.nameProduct}, ${producto.descriptionProduct} , ${provider.imageProductProvider.last.identifier}');
 
                   Navigator.of(context).pop();
                 }

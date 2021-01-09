@@ -34,42 +34,66 @@ class _WidgetProductState extends State<WidgetProduct> {
   }
 
   Widget _bodyWidgetProducts(int item) {
-    return SingleChildScrollView(
-      child: Card(
-        shape: BeveledRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        elevation: 10,
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Consumer<ShopsProvider>(
-            builder: (context, provider, child) => Column(
-              children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: AssetThumb(
-                      asset: provider.ListProducts[item].imageProduct.last,
-                      width: 400,
-                      height: 400,
-                    )),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '${provider.ListProducts[item].nameProduct.toUpperCase()}',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                        color: ColorPalete.color5),
-                    textAlign: TextAlign.center,
-                  ),
+    return Consumer<ShopsProvider>(
+      builder: (context, provider, child) =>Stack(
+        children:[SingleChildScrollView(
+          child: Card(
+            color: ColorPalete.color4,
+            shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            elevation: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child:  Column(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: AssetThumb(
+                          asset: provider.ListProducts[item].imageProduct.last,
+                          width: 400,
+                          height: 400,
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '${provider.ListProducts[item].nameProduct.toUpperCase()}',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                            color: ColorPalete.color5),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    textCustomStyle(
+                        '${provider.ListProducts[item].descriptionProduct}', 16),
+                  ],
                 ),
-                textCustomStyle(
-                    '${provider.ListProducts[item].descriptionProduct}', 16),
-              ],
+              ),
             ),
           ),
-        ),
+
+          Positioned(
+            top: -12,
+            right: -15,
+            child: ClipOval(
+              child: IconButton(
+                constraints: BoxConstraints(),
+                color: ColorPalete.color5,
+                onPressed: () {
+
+                  //metodo para eliminar el producto de la lista actual
+
+                  provider.deleteProductFromList(provider.ListProducts[item]);
+
+                },
+                iconSize: 30,
+                icon: Icon(Icons.delete),
+              ),
+            ),
+          ),
+        ]
       ),
     );
   }
@@ -83,7 +107,7 @@ class _WidgetProductState extends State<WidgetProduct> {
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
-              color: ColorPalete.color3),
+              color: ColorPalete.color2),
           textAlign: TextAlign.center,
         ),
       ],

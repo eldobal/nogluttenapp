@@ -41,6 +41,11 @@ class ShopsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void deleteProductFromList(Product product){
+    ListProducts.remove(product);
+    notifyListeners();
+  }
+
   void setImageProductClear(){
     imageProductProvider = List<Asset>();
     nameProduct.clear();
